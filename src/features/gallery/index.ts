@@ -1,0 +1,6 @@
+export { GalleryGrid } from './components/GalleryGrid'
+export { GalleryCategoryFilter } from './components/GalleryCategoryFilter'
+export { Lightbox } from './components/Lightbox'
+export { useGallery } from './hooks/useGallery'
+export { useLightbox } from './hooks/useLightbox'
+export type { GalleryImage, GalleryCategory } from './types/gallery.types'
