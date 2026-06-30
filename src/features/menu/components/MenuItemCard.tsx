@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { motion } from 'framer-motion'
 import { LazyImage } from '@/components/ui/LazyImage'
 import { VegBadge } from '@/components/ui/VegBadge'
@@ -14,7 +15,7 @@ interface MenuItemCardProps {
   index?: number
 }
 
-export function MenuItemCard({ item, currencySymbol, index = 0 }: MenuItemCardProps) {
+export const MenuItemCard = memo(function MenuItemCard({ item, currencySymbol, index = 0 }: MenuItemCardProps) {
   const { t } = useTranslation()
   const badge = resolveBadge(item)
   const priceDisplay = getPriceDisplay(currencySymbol, item.pricing)
@@ -75,4 +76,4 @@ export function MenuItemCard({ item, currencySymbol, index = 0 }: MenuItemCardPr
       />
     </motion.article>
   )
-}
+})

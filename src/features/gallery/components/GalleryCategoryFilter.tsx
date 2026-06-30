@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -8,15 +9,15 @@ interface GalleryCategoryFilterProps {
   onSelect: (category: GalleryCategory) => void
 }
 
-export function GalleryCategoryFilter({ active, onSelect }: GalleryCategoryFilterProps) {
+export const GalleryCategoryFilter = memo(function GalleryCategoryFilter({ active, onSelect }: GalleryCategoryFilterProps) {
   const { t } = useTranslation()
 
-  const filters: { id: GalleryCategory; label: string }[] = [
+  const filters = useMemo<{ id: GalleryCategory; label: string }[]>(() => [
     { id: 'all',      label: t.gallery.filterAll },
     { id: 'food',     label: t.gallery.filterFood },
     { id: 'ambience', label: t.gallery.filterAmbience },
     { id: 'team',     label: t.gallery.filterTeam },
-  ]
+  ], [t.gallery])
 
   return (
     <div
@@ -51,4 +52,4 @@ export function GalleryCategoryFilter({ active, onSelect }: GalleryCategoryFilte
       })}
     </div>
   )
-}
+})

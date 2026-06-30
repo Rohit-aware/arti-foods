@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, memo } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -10,7 +10,7 @@ interface CategoryTabsProps {
   onSelect: (id: string) => void
 }
 
-export function CategoryTabs({ categories, activeCategoryId, onSelect }: CategoryTabsProps) {
+export const CategoryTabs = memo(function CategoryTabs({ categories, activeCategoryId, onSelect }: CategoryTabsProps) {
   const { t } = useTranslation()
   const activeRef = useRef<HTMLButtonElement>(null)
 
@@ -53,4 +53,4 @@ export function CategoryTabs({ categories, activeCategoryId, onSelect }: Categor
       </nav>
     </div>
   )
-}
+})

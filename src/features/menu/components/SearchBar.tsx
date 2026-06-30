@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { cn } from '@/lib/cn'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -7,7 +8,7 @@ interface SearchBarProps {
   className?: string
 }
 
-export function SearchBar({ query, onChange, className }: SearchBarProps) {
+export const SearchBar = memo(function SearchBar({ query, onChange, className }: SearchBarProps) {
   const { t } = useTranslation()
 
   return (
@@ -39,4 +40,4 @@ export function SearchBar({ query, onChange, className }: SearchBarProps) {
       )}
     </div>
   )
-}
+})

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
@@ -10,10 +11,12 @@ export function MenuPreview() {
   const { t } = useTranslation()
   const { restaurant, categories } = useMenu()
 
-  const popularItems = categories
-    .flatMap(c => c.items)
-    .filter(item => item.isPopular && item.isAvailable)
-    .slice(0, 6)
+  const popularItems = useMemo(() => {
+    return categories
+      .flatMap(c => c.items)
+      .filter(item => item.isPopular && item.isAvailable)
+      .slice(0, 6)
+  }, [categories])
 
   if (popularItems.length === 0) return null
 

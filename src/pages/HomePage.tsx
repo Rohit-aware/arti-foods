@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HeroSection } from '@/features/hero/components/HeroSection'
@@ -15,12 +15,12 @@ export function HomePage() {
   const { t } = useTranslation()
   useSEO({})
 
-  const whyItems = [
+  const whyItems = useMemo(() => [
     { icon: '🌿', title: t.home.fresh, desc: t.home.freshDesc },
     { icon: '🏡', title: t.home.home, desc: t.home.homeDesc },
     { icon: '⚡', title: t.home.quick, desc: t.home.quickDesc },
     { icon: '❤️', title: t.home.love, desc: t.home.loveDesc },
-  ]
+  ], [t.home])
 
   return (
     <>

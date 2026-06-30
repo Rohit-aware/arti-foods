@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { cn } from '@/lib/cn'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -6,7 +7,7 @@ interface VegBadgeProps {
   className?: string
 }
 
-export function VegBadge({ isVeg, className }: VegBadgeProps) {
+export const VegBadge = memo(function VegBadge({ isVeg, className }: VegBadgeProps) {
   const { t } = useTranslation()
   return (
     <span
@@ -21,4 +22,4 @@ export function VegBadge({ isVeg, className }: VegBadgeProps) {
       <span className={cn('w-2 h-2 rounded-full', isVeg ? 'bg-[var(--veg)]' : 'bg-[var(--nonveg)]')} />
     </span>
   )
-}
+})
