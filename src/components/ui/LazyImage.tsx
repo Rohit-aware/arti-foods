@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { cn } from '@/lib/cn'
 import { SkeletonBox } from './SkeletonBox'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -11,7 +11,7 @@ interface LazyImageProps {
   objectFit?: 'cover' | 'contain'
 }
 
-export function LazyImage({ src, alt, className, containerClassName, objectFit = 'cover' }: LazyImageProps) {
+export const LazyImage = memo(function LazyImage({ src, alt, className, containerClassName, objectFit = 'cover' }: LazyImageProps) {
   const { t } = useTranslation()
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(false)
@@ -40,4 +40,4 @@ export function LazyImage({ src, alt, className, containerClassName, objectFit =
       )}
     </div>
   )
-}
+})

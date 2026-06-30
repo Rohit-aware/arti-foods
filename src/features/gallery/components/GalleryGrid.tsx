@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { LazyImage } from '@/components/ui/LazyImage'
@@ -8,7 +9,7 @@ interface GalleryGridProps {
   onImageClick: (index: number) => void
 }
 
-export function GalleryGrid({ images, onImageClick }: GalleryGridProps) {
+export const GalleryGrid = memo(function GalleryGrid({ images, onImageClick }: GalleryGridProps) {
   return (
     <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
       <AnimatePresence mode="popLayout">
@@ -39,4 +40,4 @@ export function GalleryGrid({ images, onImageClick }: GalleryGridProps) {
       </AnimatePresence>
     </div>
   )
-}
+})

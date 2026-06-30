@@ -1,5 +1,5 @@
 import { useRouteError, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 
 export function useErrorBoundary() {
   const error = useRouteError()
@@ -34,13 +34,13 @@ export function useErrorBoundary() {
     }
   }, [isChunkError])
 
-  const handleReload = () => {
+  const handleReload = useCallback(() => {
     window.location.reload()
-  }
+  }, [])
 
-  const handleGoHome = () => {
+  const handleGoHome = useCallback(() => {
     navigate('/')
-  }
+  }, [navigate])
 
   return {
     errorMessage,

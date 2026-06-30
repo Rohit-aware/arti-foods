@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { MenuItemCard } from './MenuItemCard'
 import { useTranslation } from '@/hooks/useTranslation'
 import type { MenuCategory } from '@/types'
@@ -7,7 +8,7 @@ interface CategorySectionProps {
   currencySymbol: string
 }
 
-export function CategorySection({ category, currencySymbol }: CategorySectionProps) {
+export const CategorySection = memo(function CategorySection({ category, currencySymbol }: CategorySectionProps) {
   const { t } = useTranslation()
 
   return (
@@ -27,4 +28,4 @@ export function CategorySection({ category, currencySymbol }: CategorySectionPro
       </div>
     </section>
   )
-}
+})

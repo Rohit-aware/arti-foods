@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { menuConfig } from '@/config/menu.config'
@@ -8,13 +9,17 @@ import { themeConfig } from '@/config/theme.config'
 
 export function HeroSection() {
   const { t } = useTranslation()
-  const popularCount = menuConfig.categories.flatMap(c => c.items).filter(i => i.isPopular).length
 
-  const stats = [
+  const popularCount = useMemo(
+    () => menuConfig.categories.flatMap(c => c.items).filter(i => i.isPopular).length,
+    []
+  )
+
+  const stats = useMemo(() => [
     { value: '50+', label: t.hero.statDishes },
     { value: '6+', label: t.hero.statYears },
     { value: '100%', label: t.hero.statHomemade },
-  ]
+  ], [t.hero])
 
   return (
     <section
