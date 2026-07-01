@@ -95,38 +95,52 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.18 }}
-          className="md:hidden bg-[var(--bg-primary)] border-t border-[rgba(165,120,85,0.12)] px-4 pb-4 pt-2 flex flex-col gap-1 shadow-lg"
-        >
-          {navLinks.map(link => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                cn(
-                  'px-4 py-3 text-sm font-medium rounded-[var(--radius-lg)] transition-all duration-300',
-                  isActive
-                    ? 'glass-warm text-[var(--primary)] font-semibold'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--primary)] hover:glass-warm-subtle'
-                )
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
-          <Link
-            to="/menu"
+        <>
+          {/* Backdrop overlay to block page content bleed-through */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 top-16 bg-[var(--bg-primary)]/95 backdrop-blur-md md:hidden"
+            style={{ zIndex: 'calc(var(--z-nav) - 1)' }}
             onClick={() => setMenuOpen(false)}
-            className="mt-1 px-4 py-3 text-sm font-semibold glass-warm-accent text-[var(--accent)] rounded-[var(--radius-lg)] text-center transition-all duration-300 active:scale-[0.97]"
+            aria-hidden="true"
+          />
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="md:hidden bg-[var(--bg-primary)] border-t border-[rgba(165,120,85,0.12)] px-4 pb-4 pt-2 flex flex-col gap-1 shadow-lg relative"
+            style={{ zIndex: 'var(--z-nav)' }}
           >
-            {t.nav.orderNow}
-          </Link>
-        </motion.div>
+            {navLinks.map(link => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  cn(
+                    'px-4 py-3 text-sm font-medium rounded-[var(--radius-lg)] transition-all duration-300',
+                    isActive
+                      ? 'glass-warm text-[var(--primary)] font-semibold'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--primary)] hover:glass-warm-subtle'
+                  )
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            <Link
+              to="/menu"
+              onClick={() => setMenuOpen(false)}
+              className="mt-1 px-4 py-3 text-sm font-semibold glass-warm-accent text-[var(--accent)] rounded-[var(--radius-lg)] text-center transition-all duration-300 active:scale-[0.97]"
+            >
+              {t.nav.orderNow}
+            </Link>
+          </motion.div>
+        </>
       )}
     </header>
   )

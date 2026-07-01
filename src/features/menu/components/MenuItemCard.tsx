@@ -24,7 +24,7 @@ export const MenuItemCard = memo(function MenuItemCard({ item, currencySymbol, i
     <motion.article
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: Math.min(index * 0.02, 0.2), duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4, boxShadow: 'var(--shadow-md)' }}
       style={{ willChange: 'transform' }}
       className={cn(
