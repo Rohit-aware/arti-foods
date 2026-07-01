@@ -4,6 +4,10 @@ export function useIntersection(options?: IntersectionObserverInit) {
   const ref = useRef<HTMLElement | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
+  const root = options?.root
+  const rootMargin = options?.rootMargin
+  const threshold = options?.threshold
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -13,11 +17,11 @@ export function useIntersection(options?: IntersectionObserverInit) {
         setIsVisible(true)
         observer.disconnect()
       }
-    }, options)
+    }, { root, rootMargin, threshold })
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [options])
+  }, [root, rootMargin, threshold])
 
   return { ref, isVisible }
 }

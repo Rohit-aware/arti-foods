@@ -62,7 +62,7 @@ export function MenuPage() {
           ))
         ) : (
           activeCategory && (
-            <CategorySection category={activeCategory} currencySymbol={restaurant.currencySymbol} />
+            <CategorySection key={activeCategory.id} category={activeCategory} currencySymbol={restaurant.currencySymbol} />
           )
         )}
       </div>

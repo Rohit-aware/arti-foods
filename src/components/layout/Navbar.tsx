@@ -28,8 +28,8 @@ export function Navbar() {
     <header
       className={cn(
         'fixed top-0 inset-x-0 z-[var(--z-nav)] transition-all duration-300',
-        scrolled
-          ? 'glass-navbar border-b border-[rgba(165,120,85,0.12)] shadow-[0_4px_24px_rgba(92,64,51,0.06)]'
+        (scrolled || menuOpen)
+          ? 'bg-[var(--bg-primary)] border-b border-[rgba(165,120,85,0.12)] shadow-[0_4px_24px_rgba(92,64,51,0.06)]'
           : 'glass-navbar'
       )}
     >
@@ -100,7 +100,7 @@ export function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.18 }}
-          className="md:hidden glass-navbar border-t border-[rgba(165,120,85,0.12)] px-4 pb-4 pt-2 flex flex-col gap-1"
+          className="md:hidden bg-[var(--bg-primary)] border-t border-[rgba(165,120,85,0.12)] px-4 pb-4 pt-2 flex flex-col gap-1 shadow-lg"
         >
           {navLinks.map(link => (
             <NavLink
